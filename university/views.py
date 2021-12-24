@@ -1036,3 +1036,213 @@ WHERE course_enrolled > 60 AND semester_id = 4 AND school_id="SELS"
 ORDER BY classize
         """
     )
+ su2021bar2_query = dictfetchall(su2021bar2)
+
+    su2021bar3 = connection.cursor()
+    su2021bar3.execute(
+        """
+        SELECT school_id, COUNT(course_section) AS section, "1-10" as classize
+FROM offered_courses
+NATURAL JOIN course
+NATURAL JOIN department
+WHERE course_enrolled > 0 AND course_enrolled <= 10  AND semester_id = 4 AND school_id="SETS"
+UNION
+SELECT school_id, COUNT(course_section) AS section, "11-20" as classize
+FROM offered_courses
+NATURAL JOIN course
+NATURAL JOIN department
+WHERE course_enrolled > 10 AND course_enrolled <= 20  AND semester_id = 4 AND school_id="SETS"
+UNION
+SELECT school_id, COUNT(course_section) AS section, "21-30" as classize
+FROM offered_courses
+NATURAL JOIN course
+NATURAL JOIN department
+WHERE course_enrolled > 20 AND course_enrolled <= 30  AND semester_id = 4 AND school_id="SETS"
+UNION
+SELECT school_id, COUNT(course_section) AS section, "31-35" as classize
+FROM offered_courses
+NATURAL JOIN course
+NATURAL JOIN department
+WHERE course_enrolled > 30 AND course_enrolled <= 35  AND semester_id = 4 AND school_id="SETS"
+UNION
+SELECT school_id, COUNT(course_section) AS section, "36-40" as classize
+FROM offered_courses
+NATURAL JOIN course
+NATURAL JOIN department
+WHERE course_enrolled > 35 AND course_enrolled <= 40  AND semester_id = 4 AND school_id="SETS"
+UNION
+SELECT school_id, COUNT(course_section) AS section, "41-50" as classize
+FROM offered_courses
+NATURAL JOIN course
+NATURAL JOIN department
+WHERE course_enrolled > 40 AND course_enrolled <= 50  AND semester_id = 4 AND school_id="SETS"
+UNION
+SELECT school_id, COUNT(course_section) AS section, "51-55" as classize
+FROM offered_courses
+NATURAL JOIN course
+NATURAL JOIN department
+WHERE course_enrolled > 50 AND course_enrolled <= 55  AND semester_id = 4 AND school_id="SETS"
+UNION
+SELECT school_id, COUNT(course_section) AS section, "56-60" as classize
+FROM offered_courses
+NATURAL JOIN course
+NATURAL JOIN department
+WHERE course_enrolled > 55 AND course_enrolled <= 60  AND semester_id = 4 AND school_id="SETS"
+UNION
+SELECT school_id, COUNT(course_section) AS section, "60+" as classize
+FROM offered_courses
+NATURAL JOIN course
+NATURAL JOIN department
+WHERE course_enrolled > 60 AND semester_id = 4 AND school_id="SETS"
+ORDER BY classize
+        """
+    )
+    su2021bar3_query = dictfetchall(su2021bar3)
+
+    su2021bar4 = connection.cursor()
+    su2021bar4.execute(
+        """
+        SELECT school_id, COUNT(course_section) AS section, "1-10" as classize
+FROM offered_courses
+NATURAL JOIN course
+NATURAL JOIN department
+WHERE course_enrolled > 0 AND course_enrolled <= 10  AND semester_id = 4 AND school_id="SLASS"
+UNION
+SELECT school_id, COUNT(course_section) AS section, "11-20" as classize
+FROM offered_courses
+NATURAL JOIN course
+NATURAL JOIN department
+WHERE course_enrolled > 10 AND course_enrolled <= 20  AND semester_id = 4 AND school_id="SLASS"
+UNION
+SELECT school_id, COUNT(course_section) AS section, "21-30" as classize
+FROM offered_courses
+NATURAL JOIN course
+NATURAL JOIN department
+WHERE course_enrolled > 20 AND course_enrolled <= 30  AND semester_id = 4 AND school_id="SLASS"
+UNION
+SELECT school_id, COUNT(course_section) AS section, "31-35" as classize
+FROM offered_courses
+NATURAL JOIN course
+NATURAL JOIN department
+WHERE course_enrolled > 30 AND course_enrolled <= 35  AND semester_id = 4 AND school_id="SLASS"
+UNION
+SELECT school_id, COUNT(course_section) AS section, "36-40" as classize
+FROM offered_courses
+NATURAL JOIN course
+NATURAL JOIN department
+WHERE course_enrolled > 35 AND course_enrolled <= 40  AND semester_id = 4 AND school_id="SLASS"
+UNION
+SELECT school_id, COUNT(course_section) AS section, "41-50" as classize
+FROM offered_courses
+NATURAL JOIN course
+NATURAL JOIN department
+WHERE course_enrolled > 40 AND course_enrolled <= 50  AND semester_id = 4 AND school_id="SLASS"
+UNION
+SELECT school_id, COUNT(course_section) AS section, "51-55" as classize
+FROM offered_courses
+NATURAL JOIN course
+NATURAL JOIN department
+WHERE course_enrolled > 50 AND course_enrolled <= 55  AND semester_id = 4 AND school_id="SLASS"
+UNION
+SELECT school_id, COUNT(course_section) AS section, "56-60" as classize
+FROM offered_courses
+NATURAL JOIN course
+NATURAL JOIN department
+WHERE course_enrolled > 55 AND course_enrolled <= 60  AND semester_id = 4 AND school_id="SLASS"
+UNION
+SELECT school_id, COUNT(course_section) AS section, "60+" as classize
+FROM offered_courses
+NATURAL JOIN course
+NATURAL JOIN department
+WHERE course_enrolled > 60 AND semester_id = 4 AND school_id="SLASS"
+ORDER BY classize
+        """
+    )
+    su2021bar4_query = dictfetchall(su2021bar4)
+
+    su2021bar5 = connection.cursor()
+    su2021bar5.execute(
+        """
+        SELECT school_id, COUNT(course_section) AS section, "1-10" as classize
+FROM offered_courses
+NATURAL JOIN course
+NATURAL JOIN department
+WHERE course_enrolled > 0 AND course_enrolled <= 10  AND semester_id = 4 AND school_id="SPPH"
+UNION
+SELECT school_id, COUNT(course_section) AS section, "11-20" as classize
+FROM offered_courses
+NATURAL JOIN course
+NATURAL JOIN department
+WHERE course_enrolled > 10 AND course_enrolled <= 20  AND semester_id = 4 AND school_id="SPPH"
+UNION
+SELECT school_id, COUNT(course_section) AS section, "21-30" as classize
+FROM offered_courses
+NATURAL JOIN course
+NATURAL JOIN department
+WHERE course_enrolled > 20 AND course_enrolled <= 30  AND semester_id = 4 AND school_id="SPPH"
+UNION
+SELECT school_id, COUNT(course_section) AS section, "31-35" as classize
+FROM offered_courses
+NATURAL JOIN course
+NATURAL JOIN department
+WHERE course_enrolled > 30 AND course_enrolled <= 35  AND semester_id = 4 AND school_id="SPPH"
+UNION
+SELECT school_id, COUNT(course_section) AS section, "36-40" as classize
+FROM offered_courses
+NATURAL JOIN course
+NATURAL JOIN department
+WHERE course_enrolled > 35 AND course_enrolled <= 40  AND semester_id = 4 AND school_id="SPPH"
+UNION
+SELECT school_id, COUNT(course_section) AS section, "41-50" as classize
+FROM offered_courses
+NATURAL JOIN course
+NATURAL JOIN department
+WHERE course_enrolled > 40 AND course_enrolled <= 50  AND semester_id = 4 AND school_id="SPPH"
+UNION
+SELECT school_id, COUNT(course_section) AS section, "51-55" as classize
+FROM offered_courses
+NATURAL JOIN course
+NATURAL JOIN department
+WHERE course_enrolled > 50 AND course_enrolled <= 55  AND semester_id = 4 AND school_id="SPPH"
+UNION
+SELECT school_id, COUNT(course_section) AS section, "56-60" as classize
+FROM offered_courses
+NATURAL JOIN course
+NATURAL JOIN department
+WHERE course_enrolled > 55 AND course_enrolled <= 60  AND semester_id = 4 AND school_id="SPPH"
+UNION
+SELECT school_id, COUNT(course_section) AS section, "60+" as classize
+FROM offered_courses
+NATURAL JOIN course
+NATURAL JOIN department
+WHERE course_enrolled > 60 AND semester_id = 4 AND school_id="SPPH"
+ORDER BY classize
+        """
+    )
+    su2021bar5_query = dictfetchall(su2021bar5)
+
+    sp2021usage1 = connection.cursor()
+    sp2021usage1.execute(
+        """
+        SELECT * from sp2021usage1
+        UNION 
+        SELECT "SPRING" as school_id, SUM(total) as total, AVG(avgenroll) as avgenroll, AVG(avgroom) as avgroom,
+        AVG(avgdiff) as avgdiff, 
+        AVG(unused) as unused
+        FROM sp2021usage1
+        """
+    )
+    sp2021usage1_query = dictfetchall(sp2021usage1)
+
+    su2021usage1 = connection.cursor()
+    su2021usage1.execute(
+        """
+        SELECT * from su2021usage1
+        UNION 
+        SELECT "SUMMER" as school_id, SUM(total) as total, AVG(avgenroll) as avgenroll, AVG(avgroom) as avgroom,
+        AVG(avgdiff) as avgdiff, 
+        AVG(unused) as unused
+        FROM su2021usage1
+        """
+    )
+    su2021usage1_query = dictfetchall(su2021usage1)
