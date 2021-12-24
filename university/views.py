@@ -1246,3 +1246,154 @@ ORDER BY classize
         """
     )
     su2021usage1_query = dictfetchall(su2021usage1)
+
+    iubresource = connection.cursor()
+    iubresource.execute(
+        """
+        SELECT * from iubresource
+        UNION 
+        SELECT "TOTAL" as classsize, SUM(resource) as resource, SUM(capacity) as capacity
+        FROM iubresource
+        """
+    )
+    iubresource_query = dictfetchall(iubresource)
+
+    iubslot = connection.cursor()
+    iubslot.execute(
+        """
+       SELECT SUM(resource)*12 as slot6, SUM(resource)*14 as slot7, (SUM(resource)*12)/3.5 as slot6avg, 
+       (SUM(resource)*14)/3.5 as slot7avg
+        FROM iubresource
+        """
+    )
+    iubslot_query = dictfetchall(iubslot)
+
+    iubcompbar1 = connection.cursor()
+    iubcompbar1.execute(
+        """
+       SELECT "20" as classsize, COUNT(room.room_id) AS iubresource
+FROM room
+WHERE room_capacity = 20
+UNION
+SELECT "30" as classsize, COUNT(room.room_id) AS iubresource
+FROM room
+WHERE room_capacity = 30
+UNION
+SELECT "35" as classsize, COUNT(room.room_id) AS iubresource
+FROM room
+WHERE room_capacity = 35
+UNION
+SELECT "40" as classsize, COUNT(room.room_id) AS iubresource
+FROM room
+WHERE room_capacity = 40
+UNION
+SELECT "50" as classsize, COUNT(room.room_id) AS iubresource
+FROM room
+WHERE room_capacity = 50
+UNION
+SELECT "54" as classsize, COUNT(room.room_id) AS iubresource
+FROM room
+WHERE room_capacity = 54
+UNION
+SELECT "64" as classsize, COUNT(room.room_id) AS iubresource
+FROM room
+WHERE room_capacity = 64
+
+        """
+    )
+    iubcompbar1_query = dictfetchall(iubcompbar1)
+
+    iubcompbar2 = connection.cursor()
+    iubcompbar2.execute(
+        """
+       SELECT "20" as classsize, COUNT(course_id)/12 as spring
+FROM offered_courses
+WHERE course_enrolled between 1 and 20 and semester_id=3
+UNION
+SELECT "30" as classsize, COUNT(course_id)/12 as spring
+FROM offered_courses
+WHERE course_enrolled > 20 AND course_enrolled <= 30 AND semester_id=3
+UNION
+SELECT "35" as classsize, COUNT(course_id)/12 as spring
+FROM offered_courses
+WHERE course_enrolled > 30 AND course_enrolled <= 35 AND semester_id=3
+UNION
+SELECT "40" as classsize, COUNT(course_id)/12 as spring
+FROM offered_courses
+WHERE course_enrolled > 35 AND course_enrolled <=40 AND semester_id=3
+UNION
+SELECT "50" as classsize, COUNT(course_id)/12 as spring
+FROM offered_courses
+WHERE course_enrolled > 40 AND course_enrolled <= 50 AND semester_id=3
+UNION
+SELECT "54" as classsize, COUNT(course_id)/12 as spring
+FROM offered_courses
+WHERE course_enrolled > 50 AND course_enrolled <= 54 AND semester_id=3
+UNION
+SELECT "64" as classsize, COUNT(course_id)/12 as spring
+FROM offered_courses
+WHERE course_enrolled > 54 AND course_enrolled <= 64 AND semester_id=3;
+
+
+        """
+    )
+    iubcompbar2_query = dictfetchall(iubcompbar2)
+
+    iubcompbar3 = connection.cursor()
+    iubcompbar3.execute(
+        """
+       SELECT "20" as classsize, COUNT(course_id)/12 as summer
+FROM offered_courses
+WHERE course_enrolled between 1 and 20 and semester_id=4
+UNION
+SELECT "30" as classsize, COUNT(course_id)/12 as summer
+FROM offered_courses
+WHERE course_enrolled > 20 AND course_enrolled <= 30 AND semester_id=4
+UNION
+SELECT "35" as classsize, COUNT(course_id)/12 as summer
+FROM offered_courses
+WHERE course_enrolled > 30 AND course_enrolled <= 35 AND semester_id=4
+UNION
+SELECT "40" as classsize, COUNT(course_id)/12 as summer
+FROM offered_courses
+WHERE course_enrolled > 35 AND course_enrolled <=40 AND semester_id=4
+UNION
+SELECT "50" as classsize, COUNT(course_id)/12 as summer
+FROM offered_courses
+WHERE course_enrolled > 40 AND course_enrolled <= 50 AND semester_id=4
+UNION
+SELECT "54" as classsize, COUNT(course_id)/12 as summer
+FROM offered_courses
+WHERE course_enrolled > 50 AND course_enrolled <= 54 AND semester_id=4
+UNION
+SELECT "64" as classsize, COUNT(course_id)/12 as summer
+FROM offered_courses
+WHERE course_enrolled > 54 AND course_enrolled <= 64 AND semester_id=4
+
+        """
+    )
+    iubcompbar3_query = dictfetchall(iubcompbar3)
+
+    context = {'sp2021class': sp2021class_query, 'su2021class': su2021class_query,
+               'sp2021piechart': sp2021piechart_query, 'su2021piechart': su2021piechart_query,
+               'sp2021en1': sp2021en1_query, 'sp2021en2': sp2021en2_query, 'sp2021en3': sp2021en3_query,
+               'sp2021en4': sp2021en4_query, 'sp2021en5': sp2021en5_query, 'sp2021en6': sp2021en6_query,
+               'sp2021en7': sp2021en7_query, 'sp2021en8': sp2021en8_query, 'sp2021en9': sp2021en9_query,
+
+               'su2021en1': su2021en1_query, 'su2021en2': su2021en2_query, 'su2021en3': su2021en3_query,
+               'su2021en4': su2021en4_query, 'su2021en5': su2021en5_query, 'su2021en6': su2021en6_query,
+               'su2021en8': su2021en8_query, 'su2021en7': su2021en7_query, 'su2021en9': su2021en9_query,
+
+               'sp2021bar1': sp2021bar1_query, 'sp2021bar2': sp2021bar2_query, 'sp2021bar3': sp2021bar3_query,
+               'sp2021bar4': sp2021bar4_query, 'sp2021bar5': sp2021bar5_query,
+
+               'su2021bar1': su2021bar1_query, 'su2021bar2': su2021bar2_query, 'su2021bar3': su2021bar3_query,
+               'su2021bar4': su2021bar4_query, 'su2021bar5': su2021bar5_query,
+
+               'sp2021usage1': sp2021usage1_query, 'su2021usage1': su2021usage1_query,
+               'iubresource': iubresource_query, 'iubslot': iubslot_query,
+
+               'iubcompbar1': iubcompbar1_query, 'iubcompbar2': iubcompbar2_query, 'iubcompbar3': iubcompbar3_query,
+               }
+
+    return render(request, 'class_size.html', context)
