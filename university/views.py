@@ -250,3 +250,250 @@ def enrollment_view(request):
         "NATURAL JOIN semester "
         "WHERE semester_id = 5"
     )
+au2021change_query = dictfetchall(au2021change)
+
+    context = {'semester_query': semester_query, 'sets': sets_query, 'slass': slass_query, 'sbe': sbe_query,
+               'sels': sels_query, 'spph': spph_query, 'cse': cse_query, 'eee': eee_query, 'ps': ps_query,
+               'school': school_query, 'sp2020': sp2020_query, 'au2020': au2020_query, 'sp2021': sp2021_query,
+               'su2021': su2021_query, 'au2021': au2021_query, 'sp2020total': sp2020total_query,
+               'au2020total': au2020total_query,
+               'sp2021total': sp2021total_query, 'su2021total': su2021total_query, 'au2021total': au2021total_query,
+               'sp2021change': sp2021change_query, 'au2021change': au2021change_query}
+    return render(request, 'enrollment.html', context)
+
+
+def class_size_view(request):
+    sp2021class = connection.cursor()
+    sp2021class.execute(
+        """ 
+        SELECT "1-10" AS classzie, COUNT(course_section) AS section, COUNT(course_section)/12 AS class6, COUNT(course_section)/14 AS class7
+        FROM offered_courses
+        WHERE course_enrolled > 0 AND course_enrolled <= 10 AND semester_id=3
+        UNION
+        SELECT "11-20" AS classzie, COUNT(course_section) AS section, COUNT(course_section)/12 AS class6, COUNT(course_section)/14 AS class7
+        FROM offered_courses
+        WHERE course_enrolled > 10 AND course_enrolled <= 20 AND semester_id=3
+        UNION
+        SELECT "21-30" AS classzie,COUNT(course_section) AS section, COUNT(course_section)/12 AS class6, COUNT(course_section)/14 AS class7
+        FROM offered_courses
+        WHERE course_enrolled > 20 AND course_enrolled <= 30 AND semester_id=3
+        UNION
+        SELECT "31-35" AS classzie,COUNT(course_section) AS section, COUNT(course_section)/12 AS class6, COUNT(course_section)/14 AS class7
+        FROM offered_courses
+        WHERE course_enrolled > 30 AND course_enrolled <= 35 AND semester_id=3
+        UNION
+        SELECT "36-40" AS classzie,COUNT(course_section) AS section, COUNT(course_section)/12 AS class6, COUNT(course_section)/14 AS class7
+        FROM offered_courses
+        WHERE course_enrolled > 35 AND course_enrolled <=40 AND semester_id=3
+        UNION
+        SELECT "41-50" AS classzie,COUNT(course_section) AS section, COUNT(course_section)/12 AS class6, COUNT(course_section)/14 AS class7
+        FROM offered_courses
+        WHERE course_enrolled > 40 AND course_enrolled <= 50 AND semester_id=3
+        UNION
+        SELECT "51-55" AS classzie,COUNT(course_section) AS section, COUNT(course_section)/12 AS class6, COUNT(course_section)/14 AS class7
+        FROM offered_courses
+        WHERE course_enrolled > 50 AND course_enrolled <= 55 AND semester_id=3
+        UNION
+        SELECT "56-65" AS classzie,COUNT(course_section) AS section, COUNT(course_section)/12 AS class6, COUNT(course_section)/14 AS class7
+        FROM offered_courses
+        WHERE course_enrolled > 55 AND course_enrolled <= 65 AND semester_id=3 
+        UNION
+        SELECT "TOTAL" AS classzie, SUM(section) AS section, SUM(class6) AS class6, SUM(class7) AS class7
+        FROM sp2021class
+ """
+    )
+
+    sp2021class_query = dictfetchall(sp2021class)
+
+    su2021class = connection.cursor()
+    su2021class.execute(
+        """
+        SELECT "1-10" AS classzie, COUNT(course_section) AS section, COUNT(course_section)/12 AS class6, COUNT(course_section)/14 AS class7
+        FROM offered_courses
+        WHERE course_enrolled > 0 AND course_enrolled <= 10 AND semester_id=4
+        UNION
+        SELECT "11-20" AS classzie, COUNT(course_section) AS section, COUNT(course_section)/12 AS class6, COUNT(course_section)/14 AS class7
+        FROM offered_courses
+        WHERE course_enrolled > 10 AND course_enrolled <= 20 AND semester_id=4
+        UNION
+        SELECT "21-30" AS classzie,COUNT(course_section) AS section, COUNT(course_section)/12 AS class6, COUNT(course_section)/14 AS class7
+        FROM offered_courses
+        WHERE course_enrolled > 20 AND course_enrolled <= 30 AND semester_id=4
+        UNION
+        SELECT "31-35" AS classzie,COUNT(course_section) AS section, COUNT(course_section)/12 AS class6, COUNT(course_section)/14 AS class7
+        FROM offered_courses
+        WHERE course_enrolled > 30 AND course_enrolled <= 35 AND semester_id=4
+        UNION
+        SELECT "36-40" AS classzie,COUNT(course_section) AS section, COUNT(course_section)/12 AS class6, COUNT(course_section)/14 AS class7
+        FROM offered_courses
+        WHERE course_enrolled > 35 AND course_enrolled <=40 AND semester_id=4
+        UNION
+        SELECT "41-50" AS classzie,COUNT(course_section) AS section, COUNT(course_section)/12 AS class6, COUNT(course_section)/14 AS class7
+        FROM offered_courses
+        WHERE course_enrolled > 40 AND course_enrolled <= 50 AND semester_id=4
+        UNION
+        SELECT "51-55" AS classzie,COUNT(course_section) AS section, COUNT(course_section)/12 AS class6, COUNT(course_section)/14 AS class7
+        FROM offered_courses
+        WHERE course_enrolled > 50 AND course_enrolled <= 55 AND semester_id=4
+        UNION
+        SELECT "56-55" AS classzie,COUNT(course_section) AS section, COUNT(course_section)/12 AS class6, COUNT(course_section)/14 AS class7
+        FROM offered_courses
+        WHERE course_enrolled > 55 AND course_enrolled <= 65 AND semester_id=4
+        UNION
+        SELECT "TOTAL" AS classzie, SUM(section) AS section, SUM(class6) AS class6, SUM(class7) AS class7
+        FROM su2021class
+        """
+    )
+
+    su2021class_query = dictfetchall(su2021class)
+
+    sp2021piechart = connection.cursor()
+    sp2021piechart.execute(
+        """SELECT * FROM sp2021class"""
+    )
+    sp2021piechart_query = dictfetchall(sp2021piechart)
+
+    su2021piechart = connection.cursor()
+    su2021piechart.execute(
+        """SELECT * FROM su2021class"""
+    )
+    su2021piechart_query = dictfetchall(su2021piechart)
+
+    sp2021en1 = connection.cursor()
+    sp2021en1.execute(
+        """
+        SELECT department.school_id, section
+FROM department
+LEFT JOIN sp2021en1 s on department.school_id = s.school_id
+GROUP BY department.school_id
+UNION
+SELECT  "total" as school_id, SUM(section)
+FROM sp2021en1
+        """
+    )
+    sp2021en1_query = dictfetchall(sp2021en1)
+
+    sp2021en2 = connection.cursor()
+    sp2021en2.execute(
+        """
+        SELECT department.school_id, section
+FROM department
+LEFT JOIN sp2021en2 s on department.school_id = s.school_id
+GROUP BY department.school_id
+UNION
+SELECT  "total" as school_id, SUM(section)
+FROM sp2021en2
+        """
+    )
+    sp2021en2_query = dictfetchall(sp2021en2)
+
+    sp2021en3 = connection.cursor()
+    sp2021en3.execute(
+        """
+        SELECT department.school_id, section
+FROM department
+LEFT JOIN sp2021en3 s on department.school_id = s.school_id
+GROUP BY department.school_id
+UNION
+SELECT  "total" as school_id, SUM(section)
+FROM sp2021en3
+        """
+    )
+    sp2021en3_query = dictfetchall(sp2021en3)
+
+    sp2021en4 = connection.cursor()
+    sp2021en4.execute(
+        """
+        SELECT department.school_id, section
+FROM department
+LEFT JOIN sp2021en4 s on department.school_id = s.school_id
+GROUP BY department.school_id
+UNION
+SELECT  "total" as school_id, SUM(section)
+FROM sp2021en4
+        """
+    )
+    sp2021en4_query = dictfetchall(sp2021en4)
+
+    sp2021en5 = connection.cursor()
+    sp2021en5.execute(
+        """
+        SELECT department.school_id, section
+FROM department
+LEFT JOIN sp2021en5 s on department.school_id = s.school_id
+GROUP BY department.school_id
+UNION
+SELECT  "total" as school_id, SUM(section)
+FROM sp2021en5
+        """
+    )
+    sp2021en5_query = dictfetchall(sp2021en5)
+
+    sp2021en6 = connection.cursor()
+    sp2021en6.execute(
+        """
+       SELECT department.school_id, section
+FROM department
+LEFT JOIN sp2021en6 s on department.school_id = s.school_id
+GROUP BY department.school_id
+UNION
+SELECT  "total" as school_id, SUM(section)
+FROM sp2021en6
+        """
+    )
+    sp2021en6_query = dictfetchall(sp2021en6)
+
+    sp2021en7 = connection.cursor()
+    sp2021en7.execute(
+        """
+       SELECT department.school_id, section
+FROM department
+LEFT JOIN sp2021en7 s on department.school_id = s.school_id
+GROUP BY department.school_id
+UNION
+SELECT  "total" as school_id, SUM(section)
+FROM sp2021en7
+        """
+    )
+    sp2021en7_query = dictfetchall(sp2021en7)
+
+    sp2021en8 = connection.cursor()
+    sp2021en8.execute(
+        """
+       SELECT department.school_id, section
+FROM department
+LEFT JOIN sp2021en8 s on department.school_id = s.school_id
+GROUP BY department.school_id
+UNION
+SELECT  "total" as school_id, SUM(section)
+FROM sp2021en8
+        """
+    )
+    sp2021en8_query = dictfetchall(sp2021en8)
+
+    sp2021en9 = connection.cursor()
+    sp2021en9.execute(
+        """
+       SELECT department.school_id, section
+FROM department
+LEFT JOIN sp2021en9 s on department.school_id = s.school_id
+GROUP BY department.school_id
+UNION
+SELECT  "total" as school_id, SUM(section)
+FROM sp2021en9
+        """
+    )
+    sp2021en9_query = dictfetchall(sp2021en9)
+
+    su2021en1 = connection.cursor()
+    su2021en1.execute(
+        """
+        SELECT department.school_id, section
+FROM department
+LEFT JOIN su2021en1 s on department.school_id = s.school_id
+GROUP BY department.school_id
+UNION
+SELECT  "total" as school_id, SUM(section)
+FROM su2021en1
+        """
+    )
