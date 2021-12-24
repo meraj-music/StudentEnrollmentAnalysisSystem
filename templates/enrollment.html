@@ -1,0 +1,390 @@
+{% extends 'base.html' %}
+
+{% block scripts %}
+    <script>
+        $(document).ready(function () {
+            const ctx = document.getElementById('myChart').getContext('2d');
+            const myChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: [{% for data in semester_query %}
+                        '{{ data.semester_name }}{{ data.year }}',
+                    {% endfor %}
+                    ],
+                    datasets: [{
+                        label: 'SETS',
+                        data: [{% for data in sets %}{{ data.enrolled }}, {% endfor %}],
+                        backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                        borderColor: 'rgba(255, 99, 132, 1)',
+                        borderWidth: 1
+                    },
+                        {
+                            label: 'SLASS',
+                            data: [{% for data in slass %}{{ data.enrolled }}, {% endfor %}],
+                            backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                            borderColor: 'rgba(54, 162, 235, 1)',
+                            borderWidth: 1
+                        },
+
+                        {
+                            label: 'SBE',
+                            data: [{% for data in sbe %}{{ data.enrolled }}, {% endfor %}],
+                            backgroundColor: 'rgba(255, 206, 86, 0.2)',
+                            borderColor: 'rgba(255, 206, 86, 1)',
+                            borderWidth: 1
+                        },
+
+                        {
+                            label: 'SELS',
+                            data: [{% for data in sels %}{{ data.enrolled }}, {% endfor %}],
+                            backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                            borderColor: 'rgba(75, 192, 192, 1)',
+                            borderWidth: 1
+                        },
+
+                        {
+                            label: 'SPPH',
+                            data: [{% for data in spph %}{{ data.enrolled }}, {% endfor %}],
+                            backgroundColor: 'rgba(153, 102, 255, 0.2)',
+                            borderColor: 'rgba(153, 102, 255, 1)',
+                            borderWidth: 1,
+                        }
+                    ]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    },
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: (ctx) => "Revenue Trends of the schools"
+                        },
+                        tooltip: {
+                            mode: 'index'
+                        },
+                    },
+
+                }
+            });
+        })
+
+
+        $(document).ready(function () {
+            const ctx = document.getElementById('myChart2').getContext('2d');
+            const myChart2 = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: [{% for data in semester_query %}
+                        '{{ data.semester_name }}{{ data.year }}',
+                    {% endfor %}
+                    ],
+                    datasets: [{
+                        label: 'SETS',
+                        data: [{% for data in sets %}{{ data.enrolled }}, {% endfor %}],
+                        backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                        borderColor: 'rgba(255, 99, 132, 1)',
+                        fill: true,
+                    },
+                        {
+                            label: 'SLASS',
+                            data: [{% for data in slass %}{{ data.enrolled }}, {% endfor %}],
+                            backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                            borderColor: 'rgba(54, 162, 235, 1)',
+                            fill: true,
+                        },
+
+                        {
+                            label: 'SBE',
+                            data: [{% for data in sbe %}{{ data.enrolled }}, {% endfor %}],
+                            backgroundColor: 'rgba(255, 206, 86, 0.2)',
+                            borderColor: 'rgba(255, 206, 86, 1)',
+                            fill: true,
+                        },
+
+                        {
+                            label: 'SELS',
+                            data: [{% for data in sels %}{{ data.enrolled }}, {% endfor %}],
+                            backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                            borderColor: 'rgba(75, 192, 192, 1)',
+                            fill: true,
+                        },
+
+                        {
+                            label: 'SPPH',
+                            data: [{% for data in spph %}{{ data.enrolled }}, {% endfor %}],
+                            backgroundColor: 'rgba(153, 102, 255, 0.2)',
+                            borderColor: 'rgba(153, 102, 255, 1)',
+                            fill: true,
+
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: (ctx) => "Revenue Distribution among the schools"
+                        },
+                        tooltip: {
+                            mode: 'index'
+                        },
+                    },
+                    interaction: {
+                        mode: 'nearest',
+                        axis: 'x',
+                        intersect: false
+                    },
+                    scales: {
+                        x: {},
+                        y: {
+                            stacked: true,
+
+                        }
+                    }
+                }
+            });
+        })
+
+
+        $(document).ready(function () {
+            const ctx = document.getElementById('myChart3').getContext('2d');
+            const myChart3 = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: [{% for data in semester_query %}
+                        '{{ data.semester_name }}{{ data.year }}',
+                    {% endfor %}
+                    ],
+                    datasets: [{
+                        label: 'CSE',
+                        data: [{% for data in cse %}{{ data.enrolled }}, {% endfor %}],
+                        backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                        borderColor: 'rgba(255, 99, 132, 1)',
+                        borderWidth: 1
+                    },
+                        {
+                            label: 'EEE',
+                            data: [{% for data in eee %}{{ data.enrolled }}, {% endfor %}],
+                            backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                            borderColor: 'rgba(54, 162, 235, 1)',
+                            borderWidth: 1
+                        },
+
+                        {
+                            label: 'PS',
+                            data: [{% for data in ps %}{{ data.enrolled }}, {% endfor %}],
+                            backgroundColor: 'rgba(255, 206, 86, 0.2)',
+                            borderColor: 'rgba(255, 206, 86, 1)',
+                            borderWidth: 1
+                        },
+
+                    ]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    },
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: (ctx) => "Department wise revenue in SETS"
+                        },
+                        tooltip: {
+                            mode: 'index'
+                        },
+                    },
+
+                }
+            });
+        })
+
+
+        $(document).ready(function () {
+            const ctx = document.getElementById('myChart4').getContext('2d');
+            const myChart4 = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: [{% for data in semester_query %}
+                        '{{ data.semester_name }}{{ data.year }}',
+                    {% endfor %}
+                    ],
+                    datasets: [{
+                        label: 'CSE',
+                        data: [{% for data in cse %}{{ data.enrolled }}, {% endfor %}],
+                        backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                        borderColor: 'rgba(255, 99, 132, 1)',
+                        fill: true,
+                    },
+                        {
+                            label: 'EEE',
+                            data: [{% for data in eee %}{{ data.enrolled }}, {% endfor %}],
+                            backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                            borderColor: 'rgba(54, 162, 235, 1)',
+                            fill: true,
+                        },
+
+                        {
+                            label: 'PS',
+                            data: [{% for data in ps %}{{ data.enrolled }}, {% endfor %}],
+                            backgroundColor: 'rgba(255, 206, 86, 0.2)',
+                            borderColor: 'rgba(255, 206, 86, 1)',
+                            fill: true,
+                        },
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: (ctx) => "Revenue of SETS"
+                        },
+                        tooltip: {
+                            mode: 'index'
+                        },
+                    },
+                    interaction: {
+                        mode: 'nearest',
+                        axis: 'x',
+                        intersect: false
+                    },
+                    scales: {
+                        x: {},
+                        y: {
+                            stacked: true,
+
+                        }
+                    }
+                }
+            });
+        })
+
+
+    </script>
+{% endblock %}
+
+{% block content %}
+
+
+    <div id="rawTable" width="100px" style="margin-bottom: 30px">
+        <br>
+        <table>
+            <tr>
+                <th>SEMESTER</th>
+                {% for data in school %}
+                    <th>{{ data.school_id }}</th>
+                {% endfor %}
+
+                <th>TOTAL</th>
+                <th>CHANGE%</th>
+
+            </tr>
+
+            <tr>
+                <td>Spring 2020</td>
+                {% for data in sp2020 %}
+                    <td>{{ data.enrolled }}</td>
+                {% endfor %}
+
+                <td>
+                    {% for data in sp2020total %}
+                        {{ data.Total }}
+                    {% endfor %}
+                </td>
+                <td>0%</td>
+            </tr>
+            <tr>
+
+                <td>Autumn 2020</td>
+                {% for data in au2020 %}
+                    <td>{{ data.enrolled }}</td>
+                {% endfor %}
+
+                <td>
+                    {% for data in au2020total %}
+                        {{ data.Total }}
+                    {% endfor %}
+
+                </td>
+                <td>0%</td>
+            </tr>
+            <tr>
+
+                <td>Spring 2021</td>
+                {% for data in sp2021 %}
+                    <td>{{ data.enrolled }}</td>
+                {% endfor %}
+
+                <td>
+                    {% for data in sp2021total %}
+                        {{ data.Total }}
+                    {% endfor %}
+                </td>
+
+                <td>
+                    {% for data in sp2021change %}
+                        {{ data.change }}%
+                    {% endfor %}
+
+                </td>
+            </tr>
+            <tr>
+
+                <td>Summer 2021</td>
+                {% for data in su2021 %}
+                    <td>{{ data.enrolled }}</td>
+                {% endfor %}
+                <td>
+                    {% for data in su2021total %}
+                        {{ data.Total }}
+                    {% endfor %}
+                </td>
+                <td>0%</td>
+
+            </tr>
+            <tr>
+
+                <td>Autumn 2021</td>
+                {% for data in au2021 %}
+                    <td>{{ data.enrolled }}</td>
+                {% endfor %}
+
+                <td>
+                    {% for data in au2021total %}
+                        {{ data.Total }}
+                    {% endfor %}
+
+                </td>
+                <td>
+                    {% for data in au2021change %}
+                        +{{ data.change }}%
+                    {% endfor %}
+
+                </td>
+
+            </tr>
+
+        </table>
+
+    </div>
+    <canvas id="myChart" width="100px" height="30px"></canvas>
+
+    <br>
+    <canvas id="myChart2" width="100px" height="30px" style="margin-top: 30px"></canvas>
+
+    <br>
+    <canvas id="myChart3" width="100px" height="30px" style="margin-top: 30px"></canvas>
+
+    <br>
+    <canvas id="myChart4" width="100px" height="30px" style="margin-top: 30px"></canvas>
+
+
+
+
+{% endblock %}

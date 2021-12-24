@@ -1,0 +1,811 @@
+{% extends 'base.html' %}
+
+{% block scripts %}
+    <script>
+        $(document).ready(function () {
+            const ctx = document.getElementById('myChart').getContext('2d');
+            const myChart = new Chart(ctx, {
+                type: 'pie',
+                data: {
+                    labels: [{% for data in sp2021piechart %}
+                        '{{ data.classzie }}',
+                    {% endfor %}
+                    ],
+                    datasets: [{
+                        label: 'My First Dataset',
+                        data: [{% for data in sp2021piechart %}
+                            {{ data.class6 }},
+                        {% endfor %}
+                        ],
+                        backgroundColor: [
+                            'rgb(255, 99, 132)',
+                            'rgb(54, 162, 235)',
+                            'rgb(255, 205, 86)',
+                            'rgba(75, 192, 192, 1)',
+                            'rgba(153, 102, 255, 1)',
+                            'rgba(15, 102, 255, 1)',
+                            'rgba(212, 102, 255, 1)',
+                            'rgba(67, 10, 255, 1)',
+                        ],
+                        hoverOffset: 4,
+                    }]
+                },
+
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                        },
+                        title: {
+                            display: true,
+                            text: 'Class Size 6'
+                        }
+                    }
+                }
+            })
+        })
+        $(document).ready(function () {
+            const ctx = document.getElementById('myChart2').getContext('2d');
+            const myChart = new Chart(ctx, {
+                type: 'pie',
+                data: {
+                    labels: [{% for data in sp2021piechart %}
+                        '{{ data.classzie }}',
+                    {% endfor %}
+                    ],
+                    datasets: [{
+                        label: 'My First Dataset',
+                        data: [{% for data in sp2021piechart %}
+                            {{ data.class7 }},
+                        {% endfor %}
+                        ],
+                        backgroundColor: [
+                            'rgb(255, 99, 132)',
+                            'rgb(54, 162, 235)',
+                            'rgb(255, 205, 86)',
+                            'rgba(75, 192, 192, 1)',
+                            'rgba(153, 102, 255, 1)',
+                            'rgba(15, 102, 255, 1)',
+                            'rgba(212, 102, 255, 1)',
+                            'rgba(67, 10, 255, 1)',
+                        ],
+                        hoverOffset: 4,
+                    }]
+                },
+
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                        },
+                        title: {
+                            display: true,
+                            text: 'Class Size 7'
+                        }
+                    }
+                }
+            })
+        })
+
+
+        $(document).ready(function () {
+            const ctx = document.getElementById('myChart3').getContext('2d');
+            const myChart = new Chart(ctx, {
+                type: 'pie',
+                data: {
+                    labels: [{% for data in su2021piechart %}
+                        '{{ data.classzie }}',
+                    {% endfor %}
+                    ],
+                    datasets: [{
+                        label: 'My First Dataset',
+                        data: [{% for data in su2021piechart %}
+                            {{ data.class6 }},
+                        {% endfor %}
+                        ],
+                        backgroundColor: [
+                            'rgb(255, 99, 132)',
+                            'rgb(54, 162, 235)',
+                            'rgb(255, 205, 86)',
+                            'rgba(75, 192, 192, 1)',
+                            'rgba(153, 102, 255, 1)',
+                            'rgba(15, 102, 255, 1)',
+                            'rgba(212, 102, 255, 1)',
+                            'rgba(67, 10, 255, 1)',
+                        ],
+                        hoverOffset: 4,
+                    }]
+                },
+
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                        },
+                        title: {
+                            display: true,
+                            text: 'Class Size 6'
+                        }
+                    }
+                }
+            })
+        })
+        $(document).ready(function () {
+            const ctx = document.getElementById('myChart4').getContext('2d');
+            const myChart = new Chart(ctx, {
+                type: 'pie',
+                data: {
+                    labels: [{% for data in su2021piechart %}
+                        '{{ data.classzie }}',
+                    {% endfor %}
+                    ],
+                    datasets: [{
+                        label: 'My First Dataset',
+                        data: [{% for data in su2021piechart %}
+                            {{ data.class7 }},
+                        {% endfor %}
+                        ],
+                        backgroundColor: [
+                            'rgb(255, 99, 132)',
+                            'rgb(54, 162, 235)',
+                            'rgb(255, 205, 86)',
+                            'rgba(75, 192, 192, 1)',
+                            'rgba(153, 102, 255, 1)',
+                            'rgba(15, 102, 255, 1)',
+                            'rgba(212, 102, 255, 1)',
+                            'rgba(67, 10, 255, 1)',
+                        ],
+                        hoverOffset: 4,
+                    }]
+                },
+
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                        },
+                        title: {
+                            display: true,
+                            text: 'Class Size 7'
+                        }
+                    }
+                }
+            })
+        })
+
+
+        $(document).ready(function () {
+            const ctx = document.getElementById('myChart5').getContext('2d');
+            const myChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ["1-10", "11-20", "21-30", "31-35", "36-40", "41-50", "51-55", "56-60", "60+"],
+
+                    datasets: [{
+                        label: 'SBE',
+                        data: [{% for data in sp2021bar1 %}
+                            {{ data.section }},
+                        {% endfor %}
+                        ],
+                        backgroundColor: [
+                            'rgb(255, 99, 132)',
+                        ],
+                        borderWidth: 1
+                    },
+                        {
+                            label: 'SELS',
+                            data: [{% for data in sp2021bar2 %}
+                                {{ data.section }},
+                            {% endfor %}
+                            ],
+                            backgroundColor: [
+                                'rgb(54, 162, 235)',
+                            ],
+                            borderWidth: 1
+                        },
+
+                        {
+                            label: 'SETS',
+                            data: [{% for data in sp2021bar3 %}
+                                {{ data.section }},
+                            {% endfor %}
+                            ],
+                            backgroundColor: [
+                                'rgb(255, 205, 86)',
+                            ],
+                            borderWidth: 1
+                        },
+
+                        {
+                            label: 'SETS',
+                            data: [{% for data in sp2021bar4 %}
+                                {{ data.section }},
+                            {% endfor %}
+                            ],
+                            backgroundColor: [
+                                'rgba(75, 192, 192, 1)',
+                            ],
+                            borderWidth: 1
+                        },
+
+                        {
+                            label: 'SPPH',
+                            data: [{% for data in sp2021bar5 %}
+                                {{ data.section }},
+                            {% endfor %}
+                            ],
+                            backgroundColor: [
+                                'rgba(153, 102, 255, 1)',
+                            ],
+                            borderWidth: 1
+                        },
+
+
+                    ]
+                },
+
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        },
+                    }
+                },
+            })
+        })
+
+
+        $(document).ready(function () {
+            const ctx = document.getElementById('myChart6').getContext('2d');
+            const myChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ["1-10", "11-20", "21-30", "31-35", "36-40", "41-50", "51-55", "56-60", "60+"],
+
+                    datasets: [{
+                        label: 'SBE',
+                        data: [{% for data in su2021bar1 %}
+                            {{ data.section }},
+                        {% endfor %}
+                        ],
+                        backgroundColor: [
+                            'rgb(255, 99, 132)',
+                        ],
+                        borderWidth: 1
+                    },
+                        {
+                            label: 'SELS',
+                            data: [{% for data in su2021bar2 %}
+                                {{ data.section }},
+                            {% endfor %}
+                            ],
+                            backgroundColor: [
+                                'rgb(54, 162, 235)',
+                            ],
+                            borderWidth: 1
+                        },
+
+                        {
+                            label: 'SETS',
+                            data: [{% for data in su2021bar3 %}
+                                {{ data.section }},
+                            {% endfor %}
+                            ],
+                            backgroundColor: [
+                                'rgb(255, 205, 86)',
+                            ],
+                            borderWidth: 1
+                        },
+
+                        {
+                            label: 'SETS',
+                            data: [{% for data in su2021bar4 %}
+                                {{ data.section }},
+                            {% endfor %}
+                            ],
+                            backgroundColor: [
+                                'rgba(75, 192, 192, 1)',
+                            ],
+                            borderWidth: 1
+                        },
+
+                        {
+                            label: 'SPPH',
+                            data: [{% for data in su2021bar5 %}
+                                {{ data.section }},
+                            {% endfor %}
+                            ],
+                            backgroundColor: [
+                                'rgba(153, 102, 255, 1)',
+                            ],
+                            borderWidth: 1
+                        },
+
+
+                    ]
+                },
+
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        },
+                    }
+                },
+            })
+        })
+
+
+
+    $(document).ready(function () {
+            const ctx = document.getElementById('myChart7').getContext('2d');
+            const myChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ["20", "30", "35", "40", "50", "54", "64"],
+
+                    datasets: [{
+                        label: 'IUB Resource',
+                        data: [{% for data in iubcompbar1 %}
+                            {{ data.iubresource }},
+                        {% endfor %}
+                        ],
+                        backgroundColor: [
+                            'rgb(255, 99, 132)',
+                        ],
+                        borderWidth: 1
+                    },
+                        {
+                            label: 'SPRING',
+                            data: [{% for data in iubcompbar2 %}
+                                {{ data.spring }},
+                            {% endfor %}
+                            ],
+                            backgroundColor: [
+                                'rgb(54, 162, 235)',
+                            ],
+                            borderWidth: 1
+                        },
+
+                        {
+                            label: 'SUMMER',
+                            data: [{% for data in iubcompbar3 %}
+                                {{ data.summer }},
+                            {% endfor %}
+                            ],
+                            backgroundColor: [
+                                'rgb(255, 205, 86)',
+                            ],
+                            borderWidth: 1
+                        },
+
+
+
+                    ]
+                },
+
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        },
+                    }
+                },
+            })
+        })
+    </script>
+{% endblock %}
+
+
+{% block content %}
+    <table style="margin-top: 20px">
+        <h2>SPRING 2021</h2>
+        <tr>
+            <th>CLASS SIZE</th>
+            <th>SECTIONS</th>
+            <th>CLASS ROOM 6</th>
+            <th>CLASS ROOM 7</th>
+        </tr>
+
+        {% for data in sp2021class %}
+            <tr>
+                <td>{{ data.classzie }}</td>
+                <td>{{ data.section }}</td>
+                <td>{{ data.class6 }}</td>
+                <td>{{ data.class7 }}</td>
+            </tr>
+        {% endfor %}
+
+
+    </table>
+    <canvas id="myChart"></canvas>
+    <canvas id="myChart2" style="margin-top: 50px"></canvas>
+
+
+
+
+
+    <table style="margin-top: 20px">
+        <h2>SUMMER 2021</h2>
+        <tr>
+            <th>CLASS SIZE</th>
+            <th>SECTIONS</th>
+            <th>CLASS ROOM 6</th>
+            <th>CLASS ROOM 7</th>
+        </tr>
+
+        {% for data in su2021class %}
+            <tr>
+                <td>{{ data.classzie }}</td>
+                <td>{{ data.section }}</td>
+                <td>{{ data.class6 }}</td>
+                <td>{{ data.class7 }}</td>
+            </tr>
+        {% endfor %}
+
+
+    </table>
+
+    <canvas id="myChart3"></canvas>
+    <canvas id="myChart4" style="margin-top: 50px"></canvas>
+
+
+
+
+
+    <table style="margin-top: 20px">
+        <h2>SPRING 2021</h2>
+        <tr>
+            <th>CLASS SIZE</th>
+            <th>SBE</th>
+            <th>SELS</th>
+            <th>SETS</th>
+            <th>SLASS</th>
+            <th>SPPH</th>
+            <th>TOTAL</th>
+        </tr>
+        <tr>
+            <td>1-10</td>
+            {% for data in sp2021en1 %}
+                <td>{{ data.section }}</td>
+
+            {% endfor %}
+        </tr>
+
+        <tr>
+            <td>11-20</td>
+            {% for data in sp2021en2 %}
+                <td>{{ data.section }}</td>
+
+            {% endfor %}
+        </tr>
+
+        <tr>
+            <td>21-30</td>
+            {% for data in sp2021en3 %}
+                <td>{{ data.section }}</td>
+
+            {% endfor %}
+        </tr>
+
+        <tr>
+            <td>31-35</td>
+            {% for data in sp2021en4 %}
+                <td>{{ data.section }}</td>
+
+            {% endfor %}
+        </tr>
+
+
+        <tr>
+            <td>36-40</td>
+            {% for data in sp2021en5 %}
+                <td>{{ data.section }}</td>
+
+            {% endfor %}
+        </tr>
+
+
+        <tr>
+            <td>41-50</td>
+            {% for data in sp2021en6 %}
+                <td>{{ data.section }}</td>
+
+            {% endfor %}
+        </tr>
+
+
+        <td>51-55</td>
+        {% for data in sp2021en7 %}
+            <td>{{ data.section }}</td>
+
+        {% endfor %}
+        </tr>
+
+        <tr>
+            <td>56-60</td>
+            {% for data in sp2021en8 %}
+                <td>{{ data.section }}</td>
+
+            {% endfor %}
+        </tr>
+
+
+        <tr>
+            <td>60+</td>
+            {% for data in sp2021en9 %}
+                <td>{{ data.section }}</td>
+
+            {% endfor %}
+        </tr>
+
+
+    </table>
+    <br>
+    <h3>Class distribution of SPRING 2021</h3>
+    <canvas id="myChart5" style="margin-top: 50px"></canvas>
+
+    <br>
+
+
+    <table style="margin-top: 20px">
+        <h2>SUMMER 2021</h2>
+        <tr>
+            <th>CLASS SIZE</th>
+            <th>SBE</th>
+            <th>SELS</th>
+            <th>SETS</th>
+            <th>SLASS</th>
+            <th>SPPH</th>
+            <th>TOTAL</th>
+        </tr>
+        <tr>
+            <td>1-10</td>
+            {% for data in su2021en1 %}
+                <td>{{ data.section }}</td>
+
+            {% endfor %}
+        </tr>
+
+        <tr>
+            <td>11-20</td>
+            {% for data in su2021en2 %}
+                <td>{{ data.section }}</td>
+
+            {% endfor %}
+        </tr>
+
+        <tr>
+            <td>21-30</td>
+            {% for data in su2021en3 %}
+                <td>{{ data.section }}</td>
+
+            {% endfor %}
+        </tr>
+
+        <tr>
+            <td>31-35</td>
+            {% for data in su2021en4 %}
+                <td>{{ data.section }}</td>
+
+            {% endfor %}
+        </tr>
+
+
+        <tr>
+            <td>36-40</td>
+            {% for data in su2021en5 %}
+                <td>{{ data.section }}</td>
+
+            {% endfor %}
+        </tr>
+
+
+        <tr>
+            <td>41-50</td>
+            {% for data in su2021en6 %}
+                <td>{{ data.section }}</td>
+
+            {% endfor %}
+        </tr>
+
+        <tr>
+            <td>51-55</td>
+            {% for data in su2021en7 %}
+                <td>{{ data.section }}</td>
+
+            {% endfor %}
+        </tr>
+
+        <tr>
+            <td>56-60</td>
+            {% for data in su2021en8 %}
+                <td>{{ data.section }}</td>
+
+            {% endfor %}
+        </tr>
+
+
+        <tr>
+            <td>60+</td>
+            {% for data in su2021en9 %}
+                <td>{{ data.section }}</td>
+
+            {% endfor %}
+        </tr>
+
+    </table>
+
+    <br>
+    <h3>Class distribution of SUMMER 2021</h3>
+    <canvas id="myChart6" style="margin-top: 50px"></canvas>
+
+    <br>
+
+    <table>
+        <h1>USAGE OF RESOURCES SPRING 2021</h1>
+        <tr>
+            <th></th>
+            <th>SUM</th>
+            <th>AVG ENROLL</th>
+            <th>AVG ROOM</th>
+            <th>DIFFERENCE</th>
+            <th>UNUSED %</th>
+        </tr>
+
+        {% for data in sp2021usage1 %}
+            <tr>
+                <td>{{ data.school_id }}</td>
+                <td>{{ data.total }}</td>
+                <td>{{ data.avgenroll|floatformat:2 }}</td>
+                <td>{{ data.avgroom|floatformat:2 }}</td>
+                <td>{{ data.avgdiff|floatformat:2 }}</td>
+                <td>{{ data.unused|floatformat:2 }}%</td>
+            </tr>
+        {% endfor %}
+
+    </table>
+    <br>
+    <br>
+    <table>
+        <h1>USAGE OF RESOURCES SUMMER 2021</h1>
+        <tr>
+            <th></th>
+            <th>SUM</th>
+            <th>AVG ENROLL</th>
+            <th>AVG ROOM</th>
+            <th>DIFFERENCE</th>
+            <th>UNUSED %</th>
+        </tr>
+
+        {% for data in su2021usage1 %}
+            <tr>
+                <td>{{ data.school_id }}</td>
+                <td>{{ data.total }}</td>
+                <td>{{ data.avgenroll|floatformat:2 }}</td>
+                <td>{{ data.avgroom|floatformat:2 }}</td>
+                <td>{{ data.avgdiff|floatformat:2 }}</td>
+                <td>{{ data.unused|floatformat:2 }}%</td>
+            </tr>
+        {% endfor %}
+
+    </table>
+    <br>
+    <br>
+
+    <table>
+        <h3>SUMMARY</h3>
+        <tr>
+            <th></th>
+            <th>SPRING</th>
+            <th>SUMMER</th>
+        </tr>
+        <tr>
+            <td>AVG ROOM</td>
+            <td>38.8</td>
+            <td>42.12</td>
+        </tr>
+        <tr>
+            <td>AVG ENROLLED</td>
+            <td>26.02</td>
+            <td>23.98</td>
+        </tr>
+        <tr>
+            <td>AVG UNUSED</td>
+            <td>12.86</td>
+            <td>18.14</td>
+        </tr>
+        <tr>
+            <td>UNUSED %</td>
+            <td>34.27%</td>
+            <td>43.10%</td>
+        </tr>
+    </table>
+
+    <br>
+    <br>
+
+    <table>
+    <h3>IUB available resources</h3>
+        <tr>
+            <th>CLASS SIZE</th>
+            <th>IUB RESOURCE</th>
+            <th>CAPACITY</th>
+        </tr>
+
+        {% for data in iubresource %}
+            <tr>
+                <td>{{ data.classsize }}</td>
+                <td>{{ data.resource }}</td>
+
+                <td>{{ data.capacity }}</td>
+
+            </tr>
+        {% endfor %}
+
+        <tr>
+            <td colspan="2">Total Capacity with 6 slot 2 days</td>
+            <td>{% for data in iubslot %}
+                {{ data.slot6 }}
+            {% endfor %}</td>
+        </tr>
+        <tr>
+            <td colspan="2">Total Capacity with 7 slot 2 days</td>
+            <td>{% for data in iubslot %}
+                {{ data.slot7 }}
+            {% endfor %}</td>
+        </tr>
+        <tr>
+            <td colspan="2">Considering 3.5 average course load (6 slot)</td>
+            <td>{% for data in iubslot %}
+                {{ data.slot6avg| floatformat:0}}
+            {% endfor %}</td>
+        </tr>
+        <tr>
+            <td colspan="2">Considering 3.5 average course load (7 slot)</td>
+            <td>{% for data in iubslot %}
+                {{ data.slot7avg|floatformat:0 }}
+            {% endfor %}
+            </td>
+        </tr>
+
+    </table>
+    <br>
+    <br>
+
+{#    <table>#}
+{#    <h3>Availability and course offering comparison </h3>#}
+{#    <tr>#}
+{#        <th>CLASS SIZE</th>#}
+{#        <th>IUB RESOURCE</th>#}
+{#        <th>SPRING</th>#}
+{#        <th>DIFFERENCE</th>#}
+{#        <th>SUMMER</th>#}
+{#        <th>DIFFERENCE</th>#}
+{#    </tr>#}
+{##}
+{#    {% for data in iubcompbar1 %}#}
+{#        <tr>#}
+{#        <td>{{ data.classsize}}</td>#}
+{#        <td>{{ data.iubresource }}</td>#}
+{#        </tr>#}
+{##}
+{#    {% endfor %}#}
+{#<td>tftfft</td>#}
+{#<td>tftfft</td>#}
+{#<td>tftfft</td>#}
+{#<td>tftfft</td>#}
+{#<td>tftfft</td>#}
+{#<td>tftfft</td>#}
+{#    </table>#}
+
+    <br>
+    <h3>IUB RESOURCE AND SEMESTER COMPARISON </h3>
+    <canvas id="myChart7" style="margin-top: 50px"></canvas>
+
+{% endblock %}
+
